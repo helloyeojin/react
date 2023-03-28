@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let weeklyWage = [
+      {"name": "홍길동", "time":40, "wage":10000, "sum":400000},
+      {"name": "임꺽정", "time":15, "wage":20000, "sum":300000},
+      {"name": "장길산", "time":20, "wage":20000, "sum":400000},
+      {"name": "강감찬", "time":30, "wage":15000, "sum":450000},
+      {"name": "이순신", "time":40, "wage":30000, "sum":1200000},
+    ];
+  
+    for (item of weeklyWage) {
+      console.log(`이름 : ${item["name"]} 근무시간 : ${item["time"]} 시간당급여액 : ${item["wage"]} 총액 : ${item["sum"]}`);
+    }
+  </script>
+</body>
+</html>
