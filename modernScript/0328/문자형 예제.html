@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>문자열형.html</h1>
+</body>
+</html>
+<script>
+  let str1 = "왕밤빵";
+  let str2 = '단일따옴표';
+  let str3 = `backtick ${str1} ${str2}`;
+  
+  console.log(str1);
+  console.log(str2);
+  console.log(str3);
+
+  let name = "밤빵최고"
+  let age = 6;
+  let address = "인천시 미추홀구 학익동" ;
+  console.log("이름: " + name + " 나이: " + age + " 주소: " + address);
+  console.log(`이름: ${name} 나이: ${age} 주소: ${address}`);
+
+//NOTE: 백틱은 들여쓰면 들여쓴 만큼 공백도 다 나옵니다
+  str1 =`
+      진달래
+
+            김소월
+      
+      나 보기가 역겨워 가실 때에는
+      말없이 고이 보내 드리오리다
+      `;
+      console.log(str1);
+
+str1 = `
+이름: ${name}
+나이: ${age}
+주소: ${address}
+`
+//NOTE: 나중에 node.js에서 되게 유용한 문법이라고 합니다
+console.log(str1);
+
+</script>

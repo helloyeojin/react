@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>함수1</h1>
+</body>
+</html>
+
+<script>
+  //자바스크립트의 매개변수는 변수이름만 쓰자
+  function sayHello(name)
+  {
+    console.log(`안녕하세요 ${name}`);
+  }
+
+  //함수호출
+  sayHello("어망고");
+  sayHello("어키위");
+  sayHello("언애플");
+
+  function myfunc1(a,b,c)
+  {
+    return a+b+c;
+  }
+
+  console.log(myfunc1());
+  console.log(myfunc1(1,2,3));
+
+  //NOTE: 매개변수에 기본값을 부여한다.
+  //NOTE: 함수 호출시에 매개변수 위치에 값을 안주면 기본값들을 적용하여 연산한다
+  //NOTE: 매개변수에 기본값을 부여할 때 기본값을 안주는 변수들을 먼저 기술하고,
+  //NOTE: 기본값을 부여하는 변수들을 나중에 기술해야 한다
+  //NOTE: 함수의 이름은 무조건 달라야 한다 -> 오버로딩을 지원하지 않지만 기본값을 통해 오버로딩과 동일한 효과를 얻는다
+  function myfunc2(a=10,b=20,c=30)
+  {
+    return a+b+c;
+  }
+  console.log(myfunc2());   // 여기에 따로 값을 지정해주지 않으면 맨 처음에 지정해놓은 기본값이 대입되어서 연산됨
+  console.log(myfunc2(1));
+  console.log(myfunc2(1,2));
+  console.log(myfunc2(1,2,3));
+
+
+  // 1~10까지의 합계를 구하는 함수
+  function sigma(limit=10)
+  {
+    if(limit<0)  // 함수가 시작되자마자 에러 체크를 하고 returd으로 함수를 종료시키게
+    {
+      return 0;   //NOTE: return구문은 값을 보내기 위한 용도 외에 함수를 종료하기 위해서도 사용 가능 -> 에러 처리
+      //NOTE: if else 구문으로 해서 에러 처리를 하려고 하면 코드가 너무 길어지게 됨
+      //NOTE: if else를 사용하지 않고 예외값이 들어왔을 때 return을 사용하여 함수를 그냥 종료시켜버림
+    }
+    sum=0;
+    for(i=1; i<=limit; i++)
+    {
+      sum = sum + i;
+    }
+    return sum;  //반환값은 하나만 보낼 수 있거나 아니면 아예 없거나
+  }
+  console.log(sigma());
+  let result = sigma();
+  console.log(result);
+  console.log(sigma(100));   //NOTE: 오버로딩
+  console.log(sigma(1000));   //NOTE: 오버로딩
+
+  console.log(sigma(-3));
+</script>
