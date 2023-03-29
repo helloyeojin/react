@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>화살표함수(람다)</h1>
+</body>
+</html>
+
+<script>
+  let person =[
+    {name: "어망고", age: 11, "phone":"010-0000-0001"},
+    {name: "어키위", age: 21, "phone":"010-0000-0002"},
+    {name: "어체리", age: 24, "phone":"010-0000-0003"},
+    {name: "장덕배", age: 4, "phone":"010-0000-0004"},
+    {name: "왕밤빵", age: 6, "phone":"010-0000-0005"},
+    {name: "언애플", age: 19, "phone":"010-0000-0006"},
+    {name: "어리치", age: 10, "phone":"010-0000-0007"},
+    {name: "어멜론", age: 11, "phone":"010-0000-0008"},
+    {name: "두리안", age: 28, "phone":"010-0000-0009"},
+    {name: "허니듀", age: 26, "phone":"010-0000-0010"},
+  ];
+
+  person.push({name:"어플럼", age: 30, phone: "010-2017-0820"});
+
+  person.forEach((p) => {
+    console.log(`${p.name} ${p.age} ${p.phone}`);
+  });
+
+  //문제 1. 성이 어씨인 사람 찾기
+  //이떄 매개변수 p에는 JSON 객체가 전달된다
+  result = person.filter(p=> p.name.startsWith("어"));  //p => {return p.name.startsWith("어")}랑 똑같음
+  console.log(result);
+
+  let ageless19 = person.filter(p=> p.age<=19); //미성년
+  let ageover19 = person.filter(p=> p.age>19); //성년
+
+  console.log(ageless19);
+  console.log(ageover19);
+
+  //정렬 - 데이터를 순서대로 늘어놓는다. (오름차순, 내림차순)
+  let sorted = person.sort(p=> p.name);
+  console.log(sorted);  //자바스크립트 Sort 기능이 요상해서 이렇게 하면 정렬이 안됨
+
+  //그럼 이걸 어떻게 해야 맞게 정렬이 되느냐
+  let sortedRight = person.sort((p1, p2)=> p1.age - p2.age);
+  //두 객체를 비교했을 때 앞의 것이 작으면 음수
+  //둘이 같으면 0
+  //뒤의 것이 크면 양수를 반환한다
+  console.log(sortedRight);
+
+  let sortedByName = person.sort((p1,p2)=> {
+    if(p1.name > p2.name) //javascript는 글씨도 부등호가 먹습니다
+      return 1;
+    else if(p1.name < p2.name) //사전상에 뒤쪽에 있으면 큰 값인거
+      return -1;
+    else
+      return 0;
+  });
+  console.log(sortedByName);
+  //참고 : 문자열로 치면 102보다 2가 큽니다
+
+  //NOTE: 근데 문제는 자바스크립트에 요오상한 버그가 있어서 이런 식으로 두가지 방식으로 sort를 해버리면
+  //NOTE: 원본 데이터의 정렬방식을 바꿔버리기 때문에 위에 예시나 밑에 예시나 같은 방식으로 정렬된 결과를 출력
+  //NOTE: 위에서 나이로 정렬을 했는데도 밑에서 이름으로 정렬해버리면 위의 결과도 가나다순 정렬로 바뀌어져 나옴
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>이것은 버튼입니다</button>
+  <!-- 
+  //NOTE: <input type="submit">  무조건 서버로 정보를 전송한다 -> 위의 <button></button>은 이거랑 동일!
+  //NOTE: <input type="button">  이벤트만 발생시킨다
+  //NOTE: 위의 버튼 태그를 두번째와 같게 하려면 <button type="button"></button> 이렇게 써줘야합니다
+  //NOTE: 이거는 퍼블리셔들이 써주지 않기 때문에 우리가 추가적으로 써줘야함!! 
+  -->
+
+  <button type="button" onclick="goDisplay()">함수선언식</button>
+  <button type=""button" id="btnPress">함수표현식</button>
+  <button type=""button" id="btnPress2">화살표함수</button>
+
+</body>
+</html>
+
+<script>
+  // 함수선언
+  function goDisplay() 
+  {
+    alert("button 눌림")
+  }
+
+  // 초창기에는 script를 헤더에 놓았음
+  // 버튼 객체가 있는데 나중에 함수를 붙입니다
+  // 함수표현식
+  window.onload = function(){  
+  // 모든 문서가 다 로딩이 된 이후에 이 함수를 호출하도록 원래 헤더에 스크립트를 놓을 때 쓰던 온로드지만
+  // 그냥 전통적으로 스크립트가 아래 들어가도 이렇게 쓴다고 합니다
+    document.getElementById("btnPress").addEventListener('click', 
+      function(){
+      alert("두번째 버튼");
+    });
+
+    document.getElementById("btnPress2").addEventListener('click', 
+      ()=>{
+      alert("세번째 버튼");
+    });
+  }
+</script>

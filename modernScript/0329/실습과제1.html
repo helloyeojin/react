@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  가로 : <input type="text" name="width" id="width"></br>
+  세로 : <input type="text" name="height" id="height"></br>
+
+  <button type="text" onclick="surface()">면적 구하기</button></br>
+  면적 : <span id="result"></span>
+</body>
+</html>
+
+<script>
+  function surface() {
+    w=document.getElementById("width").value;
+    h=document.getElementById("height").value;
+
+    result = parseInt(w) * parseInt(h);
+
+    document.getElementById("result").innerHTML = result;
+  }
+</script>
