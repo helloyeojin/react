@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
   이름 : <input type="text" name="name" id="name"><br>
@@ -12,20 +13,15 @@
   시간당 급여액 : <input type="text" name="wage" id="perPay"></br></br>
 
 
-  <button type="text" onclick="wSalary()">주급 계산하기</button>&nbsp;&nbsp;
-  <input type="reset" value="새로 입력" onclick="clear()"></br></br>
+  <button type="text" id="btnCalc">주급 계산하기</button>&nbsp;&nbsp;
+  <button type="reset" id="btnClear">새로 입력</button></br></br>
   
-  
-    이름 : <span id="outname"></span></br>
-    기본급 : <span id="basePay"></span></br>
-    초과수당 : <span id="overPay"></span></br>
-    합 : <span id="total"></span>
-    <div id="result"></div>
+  <div id="result"></div>
 </body>
 </html>
 
 <script>
-  function wSalary() {
+  $("#btnCalc").click(() => {
     // 1. 입력
     name=document.getElementById("name").value;
     worktime=document.getElementById("worktime").value;
@@ -40,23 +36,12 @@
       overPay = (worktime - 20) * (perPay * 0.5);
     }
 
-    total = basePay + overPay;
-
-    document.getElementById("outname").innerHTML = name;
-    document.getElementById("basePay").innerHTML = basePay;
-    document.getElementById("overPay").innerHTML = overPay;
-    document.getElementById("total").innerHTML = total;
-  
-
     // 3. 출력
     temp=`${name}의 기본급은 ${basePay}이고 추가수당은 ${overPay}이고 주급 총액은 ${basePay+overPay}입니다.`;
-    document.getElementById("result").innerHTML = temp;
-  }
+    $("#result").html(temp);
+  })
 
-  function clear() {
-    document.getElementById("name").value = "";
-    document.getElementById("worktime").value = "";
-    document.getElementById("perPay").value = "";
-    document.getElementById("result").innerHTML = "";
-  }
+  $("#btnClear").click(() => {
+    $("input").val("");
+  });
 </script>

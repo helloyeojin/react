@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    이름: <input type="text" id="name"><br/>
+    근무시간: <input type="text" id="worktime"><br/>
+    시간당급여액: <input type="text" id="perpay"><br/>
+    <button type="button" id="btnConfirm">확인</button>&nbsp;&nbsp;
+    <button type="button" id="btnClear">새로입력</button>&nbsp;&nbsp;
+    <div id="result"></div>
+    <script>
+        $("#btnConfirm").click(() => {
+            let name = $("#name").val();
+            let worktime = parseInt($("#worktime").val());
+            let perpay = parseInt($("#perpay").val());
+            let basepay = worktime * perpay;
+            let over_pay = 0;
+            if(worktime>=20){
+            over_pay=(worktime-20)*perpay/2;
+        }
+            const temp = `${name}의 기본급은 ${basepay}이고 수당은 ${over_pay}이고 총액은 ${basepay + over_pay}입니다.`;
+            $("#result").text(temp);
+        });
+        $("#btnClear").click(() => {
+            $("input").val("");
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
