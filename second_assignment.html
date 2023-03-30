@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>성적관리 프로그램</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+  이름 : <input type="text" id="name"><br>
+  국어 : <input type="text" id="kor"><br>
+  영어 : <input type="text" id="eng"><br>
+  수학 : <input type="text" id="mat"><br><br>
+
+  <button type="button" id="btnCalc">성적 계산하기</button>&nbsp;&nbsp;
+  <button type="button" id="btnClear">초기화</button><br><br>
+  <div id="result"></div>
+
+  <script>
+  $(document).ready(()=>{
+    $("#btnCalc").click(()=>{
+      name= $("#name").val();
+      kor= parseInt($("#kor").val());
+      eng= parseInt($("#eng").val());
+      mat= parseInt($("#mat").val());
+      if ((kor<0 || kor>100)||(eng<0 || eng>100)||(mat<0 || mat>100)) 
+      {
+        alert("0~100 사이의 점수를 입력하세요!");
+        return false;
+      }
+      sum = kor+eng+mat;
+      avg = sum/3;
+
+      const temp = `${name}의 총점은 ${sum}이고 평균점수는 ${avg}입니다.`;
+      $("#result").html(temp);
+    })
+
+    $("#btnClear").click(()=>{
+      $("input").val("");
+      $("div").html("");
+    })
+  })
+  </script>
+</body>
+</html>
