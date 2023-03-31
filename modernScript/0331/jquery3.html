@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+  <form>
+    ID : <input type="text" name="userid"/><br/>
+    PW : <input type="hidden" name="password" value="9999"/><br/>
+    USERNAME : <input type="text" name="username"><br/>
+    <input type="submit" value="보내기"/><br/>
+  </form>
+  <!-- //NOTE: form 태그는 값을 서버로 전달하는 역할을 한다. 한 페이지에 하나만 씁시다!
+  //NOTE: 따로따로 구성된 폼 여러개는 괜찮긴 합니다 BUT <form></form>태그가 중첩이 되면 데이터가 서버로 전달X -->
+  <!-- http://127.0.0.1:5500/modernScript/0331/jquery3.html?userid=test&username=%EB%B0%A4%EB%B9%B5%EC%B5%9C%EA%B3%A0
+  -> userid를 test로 username을 밤빵최고로 했을 때 submit을 누르면 주소창에 뜨는 url
+  -> userid와 username이 &로 연결되어서 나옴
+  => get방식....? -->
+</body>
+</html>
