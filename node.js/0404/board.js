@@ -17,6 +17,7 @@ let boardList = [
 app.use("/board/list", (request, response) => {
   response.render("board/board_list.ejs", {boardList:boardList});
 });
+
 app.use("/board/view/:id", (request, response) => {
   let id = request.params.id;
   let item = boardList.filter(x=>x.id==id);  //filter 메소드로 받아오면 배열로 받아오기 때문에
@@ -46,6 +47,7 @@ app.use((request, response) => {
   response.writeHead(200, { "Content-type": "text/html" });
   response.end("<h1>Express</h1>");
 });
+
 app.listen(4000, () => {
   console.log("server start http://127.0.0.1:4000");
 });
