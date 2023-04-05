@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>성적계산하기</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+  <form>
+    이름 : <input type="text" name="name" id="name"><br>
+    국어 : <input type="text" name="kor" id="kor"><br>
+    영어 : <input type="text" name="eng" id="eng"><br>
+    수학 : <input type="text" name="mat" id="mat"><br>
+
+    <button type="button" id="btnCalc">결과확인</button><br><br>
+
+    총합 : <input type="text" name="sum" id="sum">
+    평균 : <input type="text" name="avg" id="avg">
+  </form>
+</body>
+</html>
+
+<script>
+  $(document).ready(()=>{
+    $("#btnCalc").click(()=>{
+      $.ajax({
+        url:"/grade/calc",
+        data:{"name":$("#name").text(), "kor":$("#kor").val(), "eng":$("#eng").val(), "mat":$("#mat").val()},
+        dataType:"json"
+      })
+      .done((res, status, error)=>{
+        console.log(res.sum);
+        console.log(res.avg);
+        $("#sum").val(res.sum);
+        $("#avg").val(res.avg);
+      })
+      .fail((res, status, error)=>{
+        console.log(status);
+      })
+    })
+  })
+</script>

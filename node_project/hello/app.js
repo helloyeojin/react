@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var guestRouter = require('./routes/guestbook'); 
 var ajaxRouter = require('./routes/ajaxtest'); 
+var gradeRouter = require('./routes/grade');
 // 외부의 모듈을 메모리로 가져온다 = guestbook.js 파일을 끌고 들어오겟단 얘기인듯?
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/users', usersRouter);
 // url이 /guestbook으로 시작할 경우 guestRouter가 처리한다
 app.use('/guestbook', guestRouter);
 app.use('/ajax', ajaxRouter);
+app.use('/grade', gradeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
