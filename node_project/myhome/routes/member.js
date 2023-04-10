@@ -3,8 +3,8 @@ var router = express.Router();
 let commonDB = require("./commonDB");  // . 하나 찍혀있으면 현재 이 파일이 있는 폴더에 같이 있단 뜻
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('member/member_register', { title: 'Express' });
+router.get('/register', function(req, res, next) {
+  res.render('member/member_register', { title: 'Express'});
 });
 
 // 아이디 중복체크 -- 클라이언트로부터 아이디를 받는다
@@ -51,18 +51,46 @@ router.get('/login', async function(req, res, next){
   res.render("member/member_login");
 }); 
 
-router.use('/logon', async function(req, res, next){
+router.use('/loginchk', async function(req, res, next){
+  // let userid = req.body.userid;
+  // let password = req.body.password;
+  // let sql = `select count(*) cnt from tb_member where userid='${userid}' and password='${password}'`;
+
+  // let results = await commonDB.mysqlRead(sql, [userid, password]);
+  // let cnt = results[0]["cnt"];
+  // if(cnt == 1)
+  //   res.json({"result":"success"});
+  // else
+  //   res.json({"result":"fail"})
+
+//NOTE: 강사님 ver
   let userid = req.body.userid;
   let password = req.body.password;
-  let sql = `select count(*) cnt from tb_member where userid='${userid}' and password='${password}'`;
+  let sql = `select * from tb_member where userid='${userid}'`;
+  let results = await commonDB.mysqlRead(sql);
 
-  let rows = await commonDB.mysqlRead(sql, [userid, password]);
-  let cnt = rows[0]["cnt"];
-  if(cnt == 1)
-    res.json({"result":"success"});
-  else
-    res.json({"result":"fail"})
-});
+  if(results.length==0)
+  {
+    res.json({"result":"fail", msg:"아이디가 없습니다."});
+    return;
+  }
+  if(results[0]["password"] != password)
+  {
+    res.json({"result":"fail", msg:"패스워드가 일치하지 않습니다."});
+    return;
+  }
+
+  req.session["username"] = results[0]["username"];
+  req.session["userid"] = results[0]["userid"];
+  req.session["email"] = results[0]["email"];
+
+  console.log(results[0]["username"]);
+  console.log(results[0]["userid"]);
+  console.log(results[0]["email"]);
+
+  res.json({"result":"success", msg:"로그인 성공"});
+  });
+
 
 router.get('/put', async function(req, res, next){
   let userid = req.query.userid;
@@ -70,4 +98,12 @@ router.get('/put', async function(req, res, next){
   console.log(req.session);
 }); 
 
+router.use('/logout', async function(req, res, next){
+  req.session["userid"] ="";
+  req.session["username"] ="";
+  req.session["email"] ="";
+
+  // req.session.destroy();
+  res.redirect("/");
+});
 module.exports = router;

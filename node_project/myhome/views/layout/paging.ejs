@@ -1,0 +1,28 @@
+<ul class="pagination  justify-content-center">
+  <li class="page-item"><a class="page-link" href="javascript:goPage('1')">처음으로</a></li>
+  <%if(paging.pg==1){%>
+    <li class="page-item disabled"><a class="page-link" href="#none">이전 페이지</a></li>
+  <%}else{%>
+    <li class="page-item"><a class="page-link" href="javascript:goPage(<%=paging.pg-1%>)">이전 페이지</a></li>
+  <%}%>
+
+  <%for(var i=paging.pnStart; i<paging.pnEnd; i++){
+    classType = "";
+    if(i==pg){
+      classType="active";
+    }
+  %>
+  <li class="page-item <%=classType%>">
+    <a class="page-link" href="javascript:goPage('<%=i%>')"><%=i%></a>
+  </li>
+  <%}%>
+  
+
+  <%if(paging.pg==paging.pnTotal){%>
+    <li class="page-item disabled"><a class="page-link" href="#none">다음 페이지</a></li>
+  <%}else{%>
+    <li class="page-item"><a class="page-link" href="javascript:goPage(<%=paging.pg+1%>)">다음 페이지</a></li>
+  <%}%>
+
+  <li class="page-item"><a class="page-link" href="javascript:goPage(<%=paging.pnTotal%>)">마지막으로</a></li>
+</ul>
