@@ -8,18 +8,21 @@ function BoardWrite(props) {
   let {id} = useParams();  // 보내는 쪽에서 json객체로 보냄
   let history = useNavigate();
 
-  const [heroName, setHeroName] = useState("");
-  const [heroDesc, setHeroDesc] = useState("");
+  const [title, setTitle] = useState("");
+  const [writer, setWriter] = useState("");
+  const [contents, setContents] = useState("");
 
   useEffect(()=>{
     console.log("id", id);
     async function loadData(id){
-      let results = await axios.get(SERVERIP+"/hero/view/"+id);
-      console.log(results.data.hero.hero_name);
-      console.log(results.data.hero.hero_desc);
+      let results = await axios.get(SERVERIP+"/rest_board/view/"+id);
+      console.log(results.data.board.title);
+      console.log(results.data.board.writer);
+      console.log(results.data.board.contents);
 
-      setHeroName(results.data.hero.hero_name);
-      setHeroDesc(results.data.hero.hero_desc);
+      setTitle(results.data.board.title);
+      setWriter(results.data.board.writer);
+      setContents(results.data.board.contents);
     }
     if(id!=undefined)  //Write가 아니고 view로 호출할때
       loadData(id);
@@ -28,19 +31,22 @@ function BoardWrite(props) {
     // /board/view/1로 하면 id에는 파라미터값이 저장된다
   }, []);
 
-  const nameChange=(e)=>{
-    setHeroName(e.target.value);
+  const titleChange=(e)=>{
+    setTitle(e.target.value);
+  };
+  const writerChange=(e)=>{
+    setWriter(e.target.value);
+  };
+  const contentsChange=(e)=>{
+    setContents(e.target.value);
   };
 
-  const descChange=(e)=>{
-    setHeroDesc(e.target.value);
-  };
 
   // 서버로 전송하기
   const postData=()=>{
     // 데이터를 Json으로 묶어서 보내야 한다
-    let data = {"hero_name": heroName, "hero_desc": heroDesc};
-    axios.post(SERVERIP+"/hero/write", data)
+    let data = {"title": title, "writer": writer, "contents":contents};
+    axios.post(SERVERIP+"/rest_board/write", data)
     .then((res)=>{
       console.log(res.data);
       history("/board/list");  // redirect랑 똑같은거~
@@ -62,20 +68,28 @@ function BoardWrite(props) {
             <td style={{verticalAlign:"middle"}}>제목</td>
             <td>
               <div className="mb-3" style={{marginTop:"13px"}}>
-                <input type="text" className="form-control" value={heroName} placeholder="이름을 입력하세요" onChange={nameChange}/>
+                <input type="text" className="form-control" value={title} placeholder="제목을 입력하세요" onChange={titleChange}/>
               </div>
             </td>
           </tr>       
-            <tr>
-              <td style={{verticalAlign:"middle"}}>작성자</td>
-              <td>
-                <div className="mb-3" style={{marginTop:"13px"}}>
-                  <input type="text" className="form-control" value={heroDesc}placeholder="업적을 입력하세요" onChange={descChange}/>
-                </div>
-              </td>
-            </tr>      
-          </tbody>
-        </table>
+          <tr>
+            <td style={{verticalAlign:"middle"}}>작성자</td>
+            <td>
+              <div className="mb-3" style={{marginTop:"13px"}}>
+                <input type="text" className="form-control" value={writer} placeholder="작성자를 입력하세요" onChange={writerChange}/>
+              </div>
+            </td>
+          </tr>      
+          <tr>
+            <td style={{verticalAlign:"middle"}}>내용</td>
+            <td>
+              <div className="mb-3" style={{marginTop:"13px"}}>
+                <input type="text" className="form-control" value={contents} placeholder="내용을 입력하세요" onChange={contentsChange}/>
+              </div>
+            </td>
+          </tr>      
+        </tbody>
+      </table>
 
           <div className="container mt-3" style={{textAlign:"right"}}>
             <Link className = "btn btn-info" onClick={postData}>등록</Link>&nbsp;&nbsp;

@@ -17,6 +17,9 @@ function Layout(){
               <NavLink className="nav-link" to="/board/list">게시판</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link" to="/hero/list">HERO</NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="/score/list">성적게시판</NavLink>
             </li>
             <li className="nav-item">

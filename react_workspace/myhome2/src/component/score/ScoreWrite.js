@@ -17,15 +17,15 @@ function ScoreWrite(props) {
     console.log("id", id);
     async function loadData(id){
       let results = await axios.get(SERVERIP+"/score/view/"+id);
-      console.log(results.data.score.student_name);
-      console.log(results.data.score.kor);
-      console.log(results.data.score.eng);
-      console.log(results.data.score.mat);
+      console.log(results.data.score.STUDENT_NAME);
+      console.log(results.data.score.KOR);
+      console.log(results.data.score.ENG);
+      console.log(results.data.score.MAT);
 
-      setStudentName(results.data.score.student_name);
-      setKor(results.data.score.kor);
-      setEng(results.data.score.eng);
-      setMat(results.data.score.mat);
+      setStudentName(results.data.score.STUDENT_NAME);
+      setKor(results.data.score.KOR);
+      setEng(results.data.score.ENG);
+      setMat(results.data.score.MAT);
     }
     if(id!=undefined)  //Write가 아니고 view로 호출할때
       loadData(id);
