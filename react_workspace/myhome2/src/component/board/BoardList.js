@@ -83,6 +83,7 @@ function BoardList(props) {
           <col width="*"></col>
           <col width="14%"></col>
           <col width="14%"></col>
+          <col width="37%"></col>
         </colgroup>
         <thead className="table-secondary">
           <tr>
@@ -90,6 +91,7 @@ function BoardList(props) {
             <th>제목</th>
             <th>작성자</th>
             <th>작성일</th>
+            <th>첨부파일</th>
           </tr>
         </thead>
         <tbody>
@@ -102,6 +104,13 @@ function BoardList(props) {
                   <td><Link to={"/board/view/"+item.id}>{item.title}</Link></td>
                   <td>{item.username}</td>
                   <td>{item.wdate}</td>
+                  <td>
+                    {
+                      item.filelink!=null?
+                      <img src = {`http://127.0.0.1:9090/${item.filelink}`} height="200px" crossorigin="anonymous"></img>
+                      :""
+                    }
+                  </td>
                 </tr>
               )
             })
